@@ -1,0 +1,3 @@
+rootProject.name = 'clean-architecture'
+
+include 'customer-core', 'customer-infrastructure'

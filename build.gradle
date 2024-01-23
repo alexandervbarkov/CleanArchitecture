@@ -1,0 +1,57 @@
+plugins {
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+subprojects {
+    group = 'com.alexandervbarkov'
+    version = '0.0.1-SNAPSHOT'
+
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java-library'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.boot:spring-boot-dependencies:3.2.1")
+        }
+    }
+
+    ext {
+        mapstructVersion = '1.4.2.Final'
+    }
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        implementation 'javax.inject:javax.inject:1'
+
+        implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+        annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+        testImplementation platform('org.apache.groovy:groovy-bom:4.0.15')
+        testImplementation 'org.apache.groovy:groovy'
+
+        testImplementation platform('org.spockframework:spock-bom:2.4-M1-groovy-4.0')
+        testImplementation 'org.spockframework:spock-core'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
