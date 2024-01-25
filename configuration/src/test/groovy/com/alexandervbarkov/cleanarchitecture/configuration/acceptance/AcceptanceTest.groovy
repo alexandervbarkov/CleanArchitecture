@@ -1,5 +1,7 @@
-package com.alexandervbarkov.cleanarchitecture.configuration.testutil
+package com.alexandervbarkov.cleanarchitecture.configuration.acceptance
 
+import com.alexandervbarkov.cleanarchitecture.commoninfrastructure.json.Jsons
+import org.skyscreamer.jsonassert.JSONAssert
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -13,7 +15,18 @@ abstract class AcceptanceTest extends Specification {
     @Autowired
     protected MockMvc mvc
 
+    @Autowired
+    protected Jsons jsons
+
+    protected String toJson(Object object) {
+        jsons.toJson(object)
+    }
+
     protected void assertResponseBodyEqualsExpected(MockHttpServletResponse response, Object expected) {
-        JsonUtils.assertResponseBodyEqualExpected(response, expected)
+        assertEqual(toJson(expected), response.contentAsString)
+    }
+
+    private void assertEqual(String first, String second) {
+        JSONAssert.assertEquals(first, second, false)
     }
 }

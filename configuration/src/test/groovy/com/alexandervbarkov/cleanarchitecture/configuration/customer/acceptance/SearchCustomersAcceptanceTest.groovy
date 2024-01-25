@@ -1,6 +1,6 @@
 package com.alexandervbarkov.cleanarchitecture.configuration.customer.acceptance
 
-import static com.alexandervbarkov.cleanarchitecture.configuration.testutil.CustomerUtils.buildCustomer
+import static com.alexandervbarkov.cleanarchitecture.configuration.customer.testutil.CustomerUtils.buildCustomer
 import static com.alexandervbarkov.cleanarchitecture.configuration.testutil.PageUtils.buildEmptyPage
 import static com.alexandervbarkov.cleanarchitecture.configuration.testutil.PageUtils.buildExpectedPage
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get

@@ -2,10 +2,10 @@ package com.alexandervbarkov.cleanarchitecture.configuration.customer.acceptance
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.PageableDto
+import com.alexandervbarkov.cleanarchitecture.configuration.acceptance.AcceptanceTest
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.CreateCustomerGateway
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SearchCustomersGateway
 import com.alexandervbarkov.cleanarchitecture.customerinfrastructure.jpa.CustomerEntityMapper
-import com.alexandervbarkov.cleanarchitecture.configuration.testutil.AcceptanceTest
 import org.springframework.beans.factory.annotation.Autowired
 
 abstract class CustomerAcceptanceTest extends AcceptanceTest {

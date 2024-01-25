@@ -1,4 +1,4 @@
-package com.alexandervbarkov.cleanarchitecture.configuration.testutil
+package com.alexandervbarkov.cleanarchitecture.configuration.customer.testutil
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.CustomerDto

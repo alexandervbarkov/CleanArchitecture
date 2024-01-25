@@ -25,15 +25,15 @@ subprojects {
         mapstructVersion = '1.4.2.Final'
     }
 
-java {
-    sourceCompatibility = '17'
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    java {
+        sourceCompatibility = '17'
     }
-}
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
 
     dependencies {
         compileOnly 'org.projectlombok:lombok'
@@ -43,6 +43,8 @@ configurations {
 
         implementation "org.mapstruct:mapstruct:${mapstructVersion}"
         annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+        implementation 'com.github.java-json-tools:json-patch:1.13'
 
         testImplementation platform('org.apache.groovy:groovy-bom:4.0.15')
         testImplementation 'org.apache.groovy:groovy'

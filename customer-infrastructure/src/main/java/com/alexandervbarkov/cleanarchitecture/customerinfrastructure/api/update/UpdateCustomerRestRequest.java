@@ -1,4 +1,4 @@
-package com.alexandervbarkov.cleanarchitecture.customerinfrastructure.api.create;
+package com.alexandervbarkov.cleanarchitecture.customerinfrastructure.api.update;
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomerRequest;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateCustomerRestRequest implements CreateCustomerRequest {
+public class UpdateCustomerRestRequest implements CreateCustomerRequest {
     private String firstName;
     private String lastName;
 }
