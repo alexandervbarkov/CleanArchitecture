@@ -9,8 +9,9 @@ import javax.inject.Named;
 
 @Mapper(componentModel = "jsr330")
 @Named
-@FunctionalInterface
-public interface CreateCustomerRequestMapper {
+interface CreateCustomerRequestMapper {
     @Mapping(target = "id", ignore = true)
-    CustomerDto toCustomer(CreateCustomerRequest customer);
+    CustomerDto toCustomerDto(CreateCustomerRequest customer);
+
+    CreateCustomerRequestDto toCreateCustomerRequestDto(CreateCustomerRequest customer);
 }

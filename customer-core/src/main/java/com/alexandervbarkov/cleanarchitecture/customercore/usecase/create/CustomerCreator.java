@@ -10,15 +10,13 @@ import javax.inject.Named;
 
 @Named
 @RequiredArgsConstructor
-public class CustomerCreator implements CreateCustomer {
+class CustomerCreator implements CreateCustomer {
     private final CreateCustomerGateway gateway;
     private final CreateCustomerRequestMapper mapper;
 
     @Override
     public Customer create(CreateCustomerRequest request) {
-        Customer customer = mapper.toCustomer(request);
+        Customer customer = mapper.toCustomerDto(request);
         return gateway.create(customer);
     }
-
-
 }

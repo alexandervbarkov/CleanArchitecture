@@ -1,6 +1,7 @@
-package com.alexandervbarkov.cleanarchitecture.commoninfrastructure.api;
+package com.alexandervbarkov.cleanarchitecture.commoncore.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -9,10 +10,11 @@ import static java.util.Collections.singletonList;
 
 @Data
 @RequiredArgsConstructor
-public class ErrorResponse {
+@EqualsAndHashCode(callSuper = true)
+public class BadRequestException extends RuntimeException {
     private final List<String> messages;
 
-    public ErrorResponse(String message) {
+    public BadRequestException(String message) {
         this(singletonList(message));
     }
 }

@@ -15,7 +15,6 @@ class CustomerCreatorTest extends Specification {
     def "Create"() {
         given:
         def request = new CreateCustomerRequestTest(firstName: 'firstName', lastName: 'lastName')
-//        def request = new CreateCustomerRequestTest(firstName: 'firstName', lastName: 'lastName')
         def customerWithoutId = CustomerDto.builder()
                 .firstName('firstName')
                 .lastName('lastName')
