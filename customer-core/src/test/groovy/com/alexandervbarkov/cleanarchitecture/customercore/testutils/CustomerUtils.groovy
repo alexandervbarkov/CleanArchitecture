@@ -6,7 +6,7 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Custome
 class CustomerUtils {
     static Customer buildCustomer() {
         Customer.builder()
-                .id(1)
+                .id(1L)
                 .firstName('firstName')
                 .lastName('lastName')
                 .isActive(true)

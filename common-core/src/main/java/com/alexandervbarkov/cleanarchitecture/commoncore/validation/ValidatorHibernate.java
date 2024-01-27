@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 @Named
-public class ModelValidator {
+public class ValidatorHibernate implements com.alexandervbarkov.cleanarchitecture.commoncore.validation.Validator {
     private final Validator validator;
 
-    public ModelValidator() {
+    public ValidatorHibernate() {
         try (var factory = Validation.byDefaultProvider()
                 .configure()
                 .messageInterpolator(new ParameterMessageInterpolator())

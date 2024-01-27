@@ -1,6 +1,6 @@
 package com.alexandervbarkov.cleanarchitecture.configuration
 
-import com.alexandervbarkov.cleanarchitecture.commoninfrastructure.json.Jsons
+import com.alexandervbarkov.cleanarchitecture.commoncore.json.Jsons
 import org.skyscreamer.jsonassert.JSONAssert
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc

@@ -5,6 +5,6 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Custome
 import java.util.Optional;
 
 @FunctionalInterface
-public interface UpdateCustomerGateway {
-    Optional<Customer> update(Long id, String customerJsonMergePatch);
+public interface GetCustomerByIdGateway {
+    Optional<Customer> get(Long id);
 }

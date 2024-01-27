@@ -30,7 +30,7 @@ abstract class CustomerAcceptanceTest extends AcceptanceTest {
 
     protected Customer buildCustomer() {
         Customer.builder()
-                .id(1)
+                .id(1L)
                 .firstName('firstName')
                 .lastName('lastName')
                 .isActive(true)

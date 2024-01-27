@@ -1,4 +1,4 @@
-package com.alexandervbarkov.cleanarchitecture.customerinfrastructure.gateway.save;
+package com.alexandervbarkov.cleanarchitecture.customerinfrastructure.gateway;
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer;
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SaveCustomerGateway;

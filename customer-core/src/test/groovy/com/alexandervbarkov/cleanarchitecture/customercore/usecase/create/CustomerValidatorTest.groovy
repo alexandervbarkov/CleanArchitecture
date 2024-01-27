@@ -2,11 +2,11 @@ package com.alexandervbarkov.cleanarchitecture.customercore.usecase.create
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomerRequest
 import com.alexandervbarkov.cleanarchitecture.commoncore.exception.BadRequestException
-import com.alexandervbarkov.cleanarchitecture.commoncore.validation.ModelValidator
+import com.alexandervbarkov.cleanarchitecture.commoncore.validation.ValidatorHibernate
 import spock.lang.Specification
 
 class CustomerValidatorTest extends Specification {
-    def validator = new CustomerValidator(new ModelValidator())
+    def validator = new CustomerValidator(new ValidatorHibernate())
 
     def "Validate"() {
         given:

@@ -55,6 +55,8 @@ subprojects {
         testImplementation 'org.spockframework:spock-core'
         testImplementation 'net.bytebuddy:byte-buddy'
         testImplementation 'org.objenesis:objenesis:3.3'
+
+        testImplementation 'org.skyscreamer:jsonassert:1.5.1'
     }
 
     tasks.named('test') {
