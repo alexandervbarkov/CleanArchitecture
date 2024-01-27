@@ -4,13 +4,17 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Page;
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Pageable;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class Pages {
-    public static <T> Page<T> of(org.springframework.data.domain.Page<T> page, Pageable pageable) {
-        return new Page<T>() {
+    public static <Entity, Dto> Page<Dto> of(org.springframework.data.domain.Page<Entity> page, Pageable pageable, Function<Entity, Dto> entityToDtoMapper) {
+        return new Page<>() {
             @Override
-            public List<T> getContent() {
-                return page.getContent();
+            public List<Dto> getContent() {
+                return page.getContent()
+                        .stream()
+                        .map(entityToDtoMapper)
+                        .toList();
             }
 
             @Override

@@ -1,4 +1,4 @@
-package com.alexandervbarkov.cleanarchitecture.configuration.acceptance
+package com.alexandervbarkov.cleanarchitecture.configuration
 
 import com.alexandervbarkov.cleanarchitecture.commoninfrastructure.json.Jsons
 import org.skyscreamer.jsonassert.JSONAssert

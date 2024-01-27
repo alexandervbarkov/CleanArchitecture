@@ -10,9 +10,8 @@ import javax.inject.Named;
 @RequiredArgsConstructor
 class CustomerValidator {
     private final ModelValidator validator;
-    private final CreateCustomerRequestMapper mapper;
 
     void validate(CreateCustomerRequest request) {
-        validator.validate(mapper.toCreateCustomerRequestDto(request));
+        validator.validate(request);
     }
 }

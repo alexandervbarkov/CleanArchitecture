@@ -2,33 +2,38 @@ package com.alexandervbarkov.cleanarchitecture.configuration.customer.acceptance
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.PageableDto
-import com.alexandervbarkov.cleanarchitecture.configuration.acceptance.AcceptanceTest
-import com.alexandervbarkov.cleanarchitecture.customercore.gateway.CreateCustomerGateway
+import com.alexandervbarkov.cleanarchitecture.configuration.AcceptanceTest
+import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SaveCustomerGateway
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SearchCustomersGateway
-import com.alexandervbarkov.cleanarchitecture.customerinfrastructure.jpa.CustomerEntityMapper
 import org.springframework.beans.factory.annotation.Autowired
 
 abstract class CustomerAcceptanceTest extends AcceptanceTest {
     @Autowired
-    private CreateCustomerGateway createCustomerGateway
+    private SaveCustomerGateway saveCustomerGateway
 
     @Autowired
     private SearchCustomersGateway searchCustomersGateway
 
-    @Autowired
-    private CustomerEntityMapper entityMapper
-
     protected Customer createCustomer(Customer customer) {
-        createCustomerGateway.create(customer)
+        saveCustomerGateway.save(customer)
     }
 
-    protected List<? extends Customer> searchCustomers(Customer customerExample) {
+    protected List<Customer> searchCustomers(Customer customerExample) {
         searchCustomersGateway.search(customerExample, new PageableDto()).content
     }
 
     protected void assertCustomerExistsInDb(Customer expectedCustomer) {
         def customersInDb = searchCustomers(expectedCustomer)
         assert customersInDb.size() == 1
-        assert entityMapper.toEntity(expectedCustomer) == customersInDb[0]
+        assert expectedCustomer == customersInDb[0]
+    }
+
+    protected Customer buildCustomer() {
+        Customer.builder()
+                .id(1)
+                .firstName('firstName')
+                .lastName('lastName')
+                .isActive(true)
+                .build()
     }
 }

@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SearchCustomersController {
     private final SearchCustomers searchCustomers;
+    private final RestCustomerMapper mapper;
 
     @GetMapping("/customers")
-    public Page<? extends Customer> search(Customer customer, Pageable pageable) {
-        return searchCustomers.search(customer, Pageables.of(pageable));
+    public Page<Customer> search(RestCustomer customerExample, Pageable pageable) {
+        // TODO figure out why Customer is not being deserialized, even though the @Jacksonize is present,
+        // as is in the other models. As a workaround, the RestCustomer was created with a default constructor.
+        return searchCustomers.search(mapper.toCustomer(customerExample), Pageables.of(pageable));
     }
 
 }

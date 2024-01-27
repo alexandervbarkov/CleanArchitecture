@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "jsr330")
 @Component
-@FunctionalInterface
 public interface CustomerEntityMapper {
     CustomerEntity toEntity(Customer customer);
+
+    Customer toDto(CustomerEntity entity);
 }

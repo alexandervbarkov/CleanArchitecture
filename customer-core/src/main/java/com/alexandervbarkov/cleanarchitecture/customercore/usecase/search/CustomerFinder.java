@@ -15,7 +15,7 @@ public class CustomerFinder implements SearchCustomers {
     private final SearchCustomersGateway gateway;
 
     @Override
-    public Page<? extends Customer> search(Customer customerExample, Pageable pageable) {
+    public Page<Customer> search(Customer customerExample, Pageable pageable) {
         return gateway.search(customerExample, pageable);
     }
 }

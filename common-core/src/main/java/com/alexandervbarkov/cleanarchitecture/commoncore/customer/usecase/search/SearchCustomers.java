@@ -4,6 +4,7 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Custome
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Page;
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Pageable;
 
+@FunctionalInterface
 public interface SearchCustomers {
-    Page<? extends Customer> search(Customer customerExample, Pageable pageable);
+    Page<Customer> search(Customer customerExample, Pageable pageable);
 }

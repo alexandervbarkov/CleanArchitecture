@@ -15,7 +15,7 @@ class CreateCustomerFacadeTest extends Specification {
 
     def "Create Customer Chain"() {
         given:
-        CreateCustomerRequest request = Mock()
+        CreateCustomerRequest request = CreateCustomerRequest.builder().build()
 
         when:
         def actual = facade.create(request)

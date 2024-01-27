@@ -1,4 +1,4 @@
-package com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create;
+package com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.update;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +9,7 @@ import lombok.extern.jackson.Jacksonized;
 @Value
 @Builder
 @Jacksonized
-public class CreateCustomerRequest {
+public class UpdateCustomerRequest {
     @NotBlank
     String firstName;
     @NotBlank

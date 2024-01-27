@@ -2,6 +2,7 @@ package com.alexandervbarkov.cleanarchitecture.customerinfrastructure.api.create
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer;
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomer;
+import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomerRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class CreateCustomerController {
 
     @PostMapping("/customers")
     @ResponseStatus(CREATED)
-    public Customer create(@RequestBody CreateCustomerRestRequest request) {
+    public Customer create(@RequestBody CreateCustomerRequest request) {
         return createCustomer.create(request);
     }
 

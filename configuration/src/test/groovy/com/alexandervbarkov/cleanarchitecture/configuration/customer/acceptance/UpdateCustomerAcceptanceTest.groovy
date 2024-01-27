@@ -1,21 +1,27 @@
 package com.alexandervbarkov.cleanarchitecture.configuration.customer.acceptance
 
-import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.CustomerDto
-import com.alexandervbarkov.cleanarchitecture.customerinfrastructure.api.update.UpdateCustomerRestRequest
+import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer
+import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.update.UpdateCustomerRequest
+import org.springframework.test.annotation.DirtiesContext
 
-import static com.alexandervbarkov.cleanarchitecture.configuration.customer.testutil.CustomerUtils.buildCustomer
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 
 class UpdateCustomerAcceptanceTest extends CustomerAcceptanceTest {
 
+    @DirtiesContext
     def 'Update Customer'() {
         given:
         def createdCustomer = createCustomer(buildCustomer())
-        def request = new UpdateCustomerRestRequest(firstName: 'newFirstName', lastName: 'newLastName')
-        def expectedCustomer = CustomerDto.builder()
+        def request = UpdateCustomerRequest.builder()
+                .firstName('newFirstName')
+                .lastName('newLastName')
+                .isActive(false)
+                .build()
+        def expectedCustomer = Customer.builder()
                 .id(createdCustomer.id)
                 .firstName('newFirstName')
                 .lastName('newLastName')
+                .isActive(false)
                 .build()
 
         when:

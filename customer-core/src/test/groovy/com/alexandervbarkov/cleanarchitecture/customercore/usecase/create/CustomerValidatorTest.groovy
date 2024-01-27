@@ -1,17 +1,19 @@
 package com.alexandervbarkov.cleanarchitecture.customercore.usecase.create
 
+import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomerRequest
 import com.alexandervbarkov.cleanarchitecture.commoncore.exception.BadRequestException
 import com.alexandervbarkov.cleanarchitecture.commoncore.validation.ModelValidator
 import spock.lang.Specification
 
 class CustomerValidatorTest extends Specification {
-    def validator = new CustomerValidator(new ModelValidator(), new CreateCustomerRequestMapperImpl())
+    def validator = new CustomerValidator(new ModelValidator())
 
     def "Validate"() {
         given:
-        def request = CreateCustomerRequestDto.builder()
+        def request = CreateCustomerRequest.builder()
                 .firstName('valid')
                 .lastName('valid')
+                .isActive(true)
                 .build()
 
         when:
@@ -23,19 +25,22 @@ class CustomerValidatorTest extends Specification {
 
     def "Validate throws exception"() {
         given:
-        def request = CreateCustomerRequestDto.builder()
+        def request = CreateCustomerRequest.builder()
                 .firstName(' ')
-                .lastName(null)
                 .build()
+
+        def expectedErrorMessages = [
+                "firstName must not be blank, but was ' '",
+                "lastName must not be blank, but was 'null'",
+                "isActive must not be null, but was 'null'"
+        ]
 
         when:
         validator.validate(request)
 
         then:
         def ex = thrown(BadRequestException)
-        ex.messages.containsAll([
-                "firstName must not be blank, but was ' '",
-                "lastName must not be blank, but was 'null'"
-        ])
+        ex.messages.size() == expectedErrorMessages.size()
+        ex.messages.containsAll(expectedErrorMessages)
     }
 }

@@ -1,6 +1,5 @@
 package com.alexandervbarkov.cleanarchitecture.customerinfrastructure.jpa;
 
-import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,10 +12,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerEntity implements Customer {
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
+    private Boolean isActive;
 }

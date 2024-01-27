@@ -6,5 +6,5 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Pageable;
 
 @FunctionalInterface
 public interface SearchCustomersGateway {
-    Page<? extends Customer> search(Customer customer, Pageable pageable);
+    Page<Customer> search(Customer customer, Pageable pageable);
 }

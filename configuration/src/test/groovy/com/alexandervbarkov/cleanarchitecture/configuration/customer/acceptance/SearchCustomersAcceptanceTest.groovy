@@ -1,15 +1,23 @@
 package com.alexandervbarkov.cleanarchitecture.configuration.customer.acceptance
 
-import static com.alexandervbarkov.cleanarchitecture.configuration.customer.testutil.CustomerUtils.buildCustomer
+import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer
+import org.springframework.test.annotation.DirtiesContext
+
 import static com.alexandervbarkov.cleanarchitecture.configuration.testutil.PageUtils.buildEmptyPage
 import static com.alexandervbarkov.cleanarchitecture.configuration.testutil.PageUtils.buildExpectedPage
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 class SearchCustomersAcceptanceTest extends CustomerAcceptanceTest {
 
+    @DirtiesContext
     def 'Search Customers by individual field'() {
         given:
         def createdCustomer = createCustomer(customer)
+        createCustomer(Customer.builder()
+                .firstName('firstName2')
+                .lastName('lastName2')
+                .isActive(false)
+                .build())
 
         when:
         def response = mvc.perform(
@@ -28,11 +36,18 @@ class SearchCustomersAcceptanceTest extends CustomerAcceptanceTest {
         buildCustomer() | 'firstName'    | customer.firstName
         buildCustomer() | 'lastName'     | customer.lastName
         buildCustomer() | 'id'           | customer.id as String
+        buildCustomer() | 'isActive'     | customer.isActive as String
     }
 
+    @DirtiesContext
     def 'Search Customers by all fields'() {
         given:
         def customer = createCustomer(buildCustomer())
+        createCustomer(Customer.builder()
+                .firstName('firstName2')
+                .lastName('lastName2')
+                .isActive(false)
+                .build())
 
         when:
         def response = mvc.perform(
@@ -40,6 +55,7 @@ class SearchCustomersAcceptanceTest extends CustomerAcceptanceTest {
                         .queryParam('id', customer.id as String)
                         .queryParam('firstName', customer.firstName)
                         .queryParam('lastName', customer.lastName)
+                        .queryParam('isActive', customer.isActive as String)
         )
                 .andReturn()
                 .response
@@ -49,9 +65,15 @@ class SearchCustomersAcceptanceTest extends CustomerAcceptanceTest {
         assertResponseBodyEqualsExpected(response, buildExpectedPage(customer))
     }
 
+    @DirtiesContext
     def 'Search Customers no matches'() {
         given:
         createCustomer(buildCustomer())
+        createCustomer(Customer.builder()
+                .firstName('firstName2')
+                .lastName('lastName2')
+                .isActive(false)
+                .build())
 
         when:
         def response = mvc.perform(get("/customers")
