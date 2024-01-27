@@ -1,6 +1,7 @@
 package com.alexandervbarkov.cleanarchitecture.configuration.customer.acceptance
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer
+import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.search.SearchCustomersRequest
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.PageableDto
 import com.alexandervbarkov.cleanarchitecture.configuration.AcceptanceTest
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SaveCustomerGateway
@@ -14,18 +15,22 @@ abstract class CustomerAcceptanceTest extends AcceptanceTest {
     @Autowired
     private SearchCustomersGateway searchCustomersGateway
 
-    protected Customer createCustomer(Customer customer) {
+    protected Customer saveCustomer(Customer customer) {
         saveCustomerGateway.save(customer)
-    }
-
-    protected List<Customer> searchCustomers(Customer customerExample) {
-        searchCustomersGateway.search(customerExample, new PageableDto()).content
     }
 
     protected void assertCustomerExistsInDb(Customer expectedCustomer) {
         def customersInDb = searchCustomers(expectedCustomer)
         assert customersInDb.size() == 1
         assert expectedCustomer == customersInDb[0]
+    }
+
+    protected List<Customer> searchCustomers(Customer customerExample) {
+        def request = SearchCustomersRequest.builder()
+                .customerExample(customerExample)
+                .pageable(new PageableDto())
+                .build()
+        searchCustomersGateway.search(request).content
     }
 
     protected Customer buildCustomer() {

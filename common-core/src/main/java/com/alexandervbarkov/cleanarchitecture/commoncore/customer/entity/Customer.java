@@ -1,7 +1,7 @@
 package com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity;
 
+import com.alexandervbarkov.cleanarchitecture.commoncore.validation.annotation.NotBlankNullable;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
@@ -12,9 +12,9 @@ import lombok.extern.jackson.Jacksonized;
 public class Customer {
     @Min(1)
     Long id;
-    @NotBlank
+    @NotBlankNullable
     String firstName;
-    @NotBlank
+    @NotBlankNullable
     String lastName;
     Boolean isActive;
 }

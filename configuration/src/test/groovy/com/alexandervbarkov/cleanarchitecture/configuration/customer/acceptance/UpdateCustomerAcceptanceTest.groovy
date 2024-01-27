@@ -11,7 +11,7 @@ class UpdateCustomerAcceptanceTest extends CustomerAcceptanceTest {
     @DirtiesContext
     def 'Update Customer'() {
         given:
-        def createdCustomer = createCustomer(buildCustomer())
+        def createdCustomer = saveCustomer(buildCustomer())
         def request = UpdateCustomerRequest.builder()
                 .firstName('newFirstName')
                 .lastName('newLastName')

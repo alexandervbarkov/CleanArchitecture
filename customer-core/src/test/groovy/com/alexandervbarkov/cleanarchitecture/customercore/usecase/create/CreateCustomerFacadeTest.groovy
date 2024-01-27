@@ -1,12 +1,13 @@
 package com.alexandervbarkov.cleanarchitecture.customercore.usecase.create
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomerRequest
+import com.alexandervbarkov.cleanarchitecture.commoncore.validation.Validator
 import spock.lang.Specification
 
 import static com.alexandervbarkov.cleanarchitecture.customercore.testutils.CustomerUtils.buildCustomer
 
 class CreateCustomerFacadeTest extends Specification {
-    CustomerValidator validator = Mock()
+    Validator validator = Mock()
     CustomerCreator creator = Mock()
     def facade = new CreateCustomerFacade(
             new CreateCustomerChain.CustomerValidatorChain(validator),
