@@ -1,20 +1,20 @@
 package com.alexandervbarkov.cleanarchitecture.commoncore.testutil
 
+
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Page
-import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.PageDto
-import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.PageableDto
+import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Pageable
 
 class PageUtils {
-    private static final DEFAULT_PAGEABLE = new PageableDto()
+    private static final DEFAULT_PAGEABLE = new Pageable()
 
     static <T> Page<T> buildExpectedPage(
             int totalElements = 1,
             int totalElementsOnPage = 1,
             int totalPages = 1,
-            PageableDto pageable = DEFAULT_PAGEABLE,
+            Pageable pageable = DEFAULT_PAGEABLE,
             T... elements
     ) {
-        PageDto<T>.builder()
+        Page<T>.builder()
                 .content(elements as List)
                 .pageable(pageable)
                 .totalElements(totalElements)

@@ -7,35 +7,27 @@ import java.util.List;
 import java.util.function.Function;
 
 public class Pages {
-    public static <Entity, Dto> Page<Dto> of(org.springframework.data.domain.Page<Entity> page, Pageable pageable, Function<Entity, Dto> entityToDtoMapper) {
-        return new Page<>() {
-            @Override
-            public List<Dto> getContent() {
-                return page.getContent()
-                        .stream()
-                        .map(entityToDtoMapper)
-                        .toList();
-            }
+    public static <Entity, Dto> Page<Dto> of(
+            org.springframework.data.domain.Page<Entity> page,
+            Pageable pageable,
+            Function<Entity, Dto> entityToDtoMapper
+    ) {
+        return Page.<Dto>builder()
+                .content(getContent(page, entityToDtoMapper))
+                .pageable(pageable)
+                .totalElements(page.getTotalElements())
+                .totalElementsOnPage(page.getNumberOfElements())
+                .totalPages(page.getTotalPages())
+                .build();
+    }
 
-            @Override
-            public Pageable getPageable() {
-                return pageable;
-            }
-
-            @Override
-            public long getTotalElements() {
-                return page.getTotalElements();
-            }
-
-            @Override
-            public int getTotalElementsOnPage() {
-                return page.getNumberOfElements();
-            }
-
-            @Override
-            public int getTotalPages() {
-                return page.getTotalPages();
-            }
-        };
+    private static <Entity, Dto> List<Dto> getContent(
+            org.springframework.data.domain.Page<Entity> page,
+            Function<Entity, Dto> entityToDtoMapper
+    ) {
+        return page.getContent()
+                .stream()
+                .map(entityToDtoMapper)
+                .toList();
     }
 }

@@ -1,6 +1,5 @@
 package com.alexandervbarkov.cleanarchitecture.commoninfrastructure.pagination;
 
-import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Direction;
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Sort;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import static java.util.Collections.emptyList;
 import static org.springframework.util.CollectionUtils.isEmpty;
 
 public class Sorts {
-    public static List<? extends Sort> of(org.springframework.data.domain.Sort sort) {
+    public static List<Sort> of(org.springframework.data.domain.Sort sort) {
         return sort.isSorted()
                 ? toSorts(sort)
                 : emptyList();
@@ -23,17 +22,10 @@ public class Sorts {
     }
 
     private static final Function<org.springframework.data.domain.Sort.Order, Sort> toSort =
-            it -> new Sort() {
-                @Override
-                public String getProperty() {
-                    return it.getProperty();
-                }
-
-                @Override
-                public Direction getDirection() {
-                    return Directions.of(it.getDirection());
-                }
-            };
+            it -> Sort.builder()
+                    .property(it.getProperty())
+                    .direction(Directions.of(it.getDirection()))
+                    .build();
 
     public static org.springframework.data.domain.Sort of(List<? extends Sort> sorts) {
         return isEmpty(sorts)

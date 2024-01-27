@@ -14,8 +14,8 @@ class CustomersFinderTest extends Specification {
 
     def "SearchCustomers"() {
         given:
-        Pageable pageable = Mock()
-        Page page = Mock()
+        Pageable pageable = Pageable.builder().build()
+        Page page = Page.builder().build()
         def request = SearchCustomersRequest.builder()
                 .customerExample(buildCustomer())
                 .pageable(pageable)

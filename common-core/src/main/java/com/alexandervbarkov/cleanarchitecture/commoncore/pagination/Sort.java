@@ -1,7 +1,13 @@
 package com.alexandervbarkov.cleanarchitecture.commoncore.pagination;
 
-public interface Sort {
-    String getProperty();
+import lombok.Builder;
+import lombok.Value;
+import lombok.extern.jackson.Jacksonized;
 
-    Direction getDirection();
+@Value
+@Builder
+@Jacksonized
+public class Sort {
+    String property;
+    Direction direction;
 }

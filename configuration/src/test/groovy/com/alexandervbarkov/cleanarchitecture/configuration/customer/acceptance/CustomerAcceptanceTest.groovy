@@ -2,7 +2,7 @@ package com.alexandervbarkov.cleanarchitecture.configuration.customer.acceptance
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.search.SearchCustomersRequest
-import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.PageableDto
+import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Pageable
 import com.alexandervbarkov.cleanarchitecture.configuration.AcceptanceTest
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SaveCustomerGateway
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SearchCustomersGateway
@@ -28,7 +28,7 @@ abstract class CustomerAcceptanceTest extends AcceptanceTest {
     protected List<Customer> searchCustomers(Customer customerExample) {
         def request = SearchCustomersRequest.builder()
                 .customerExample(customerExample)
-                .pageable(new PageableDto())
+                .pageable(Pageable.builder().build())
                 .build()
         searchCustomersGateway.search(request).content
     }
