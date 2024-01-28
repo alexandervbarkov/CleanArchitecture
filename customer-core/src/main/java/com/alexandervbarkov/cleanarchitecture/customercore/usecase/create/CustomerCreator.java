@@ -16,7 +16,7 @@ class CustomerCreator implements CreateCustomer {
 
     @Override
     public Customer create(CreateCustomerRequest request) {
-        Customer customer = mapper.toCustomer(request);
+        var customer = mapper.toCustomer(request);
         return gateway.save(customer);
     }
 }

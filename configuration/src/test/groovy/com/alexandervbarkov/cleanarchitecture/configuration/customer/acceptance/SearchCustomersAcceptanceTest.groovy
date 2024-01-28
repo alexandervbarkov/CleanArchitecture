@@ -85,7 +85,6 @@ class SearchCustomersAcceptanceTest extends CustomerAcceptanceTest {
     def 'Search Customers no matches'() {
         given:
         saveCustomer(buildCustomer())
-        saveCustomerWhichShouldNotBeIncludedInResults()
         def idWhichShouldNotExist = '999'
 
         when:

@@ -1,16 +1,16 @@
 package com.alexandervbarkov.cleanarchitecture.commoninfrastructure.api;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 
 import java.util.List;
 
 import static java.util.Collections.singletonList;
 
-@Data
+@Value
 @RequiredArgsConstructor
 public class ErrorResponse {
-    private final List<String> messages;
+    List<String> messages;
 
     public ErrorResponse(String message) {
         this(singletonList(message));

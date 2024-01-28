@@ -4,6 +4,6 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.search
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface RestCustomerMapper {
-    SearchCustomersRequestExample toCustomer(RestCustomer restCustomer);
+public interface SearchCustomersRequestExampleMapper {
+    SearchCustomersRequestExample toSearchCustomersRequestExample(SearchCustomersRequestExampleWithDefaultConstructor searchCustomersRequestExampleWithDefaultConstructor);
 }

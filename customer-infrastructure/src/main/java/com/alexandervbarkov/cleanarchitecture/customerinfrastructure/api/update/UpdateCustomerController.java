@@ -24,7 +24,10 @@ public class UpdateCustomerController {
             content = @Content(
                     schema = @Schema(implementation = UpdateCustomerRequestSchema.class),
                     mediaType = "application/merge-patch+json")))
-    public Customer update(@PathVariable("id") Long id, @RequestBody JsonNode customerJsonMergePatch) {
+    public Customer update(
+            @PathVariable("id") Long id,
+            @RequestBody JsonNode customerJsonMergePatch
+    ) {
         return createCustomer.update(buildRequest(id, customerJsonMergePatch));
     }
 

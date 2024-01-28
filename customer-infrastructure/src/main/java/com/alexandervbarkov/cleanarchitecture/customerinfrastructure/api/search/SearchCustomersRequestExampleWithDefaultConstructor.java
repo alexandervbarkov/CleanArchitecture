@@ -6,12 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
 
+/**
+ * Jackson is not deserializing query parameters to a POJO without a no args constructor
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Jacksonized
-public class RestCustomer {
+public class SearchCustomersRequestExampleWithDefaultConstructor {
     private Long id;
     private String firstName;
     private String lastName;
