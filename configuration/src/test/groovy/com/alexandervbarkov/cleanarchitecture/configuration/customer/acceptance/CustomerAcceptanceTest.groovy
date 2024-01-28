@@ -1,11 +1,11 @@
 package com.alexandervbarkov.cleanarchitecture.configuration.customer.acceptance
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer
-import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.search.SearchCustomersRequest
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Pageable
 import com.alexandervbarkov.cleanarchitecture.configuration.AcceptanceTest
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SaveCustomerGateway
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SearchCustomersGateway
+import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SearchCustomersGatewayRequest
 import org.springframework.beans.factory.annotation.Autowired
 
 abstract class CustomerAcceptanceTest extends AcceptanceTest {
@@ -26,7 +26,7 @@ abstract class CustomerAcceptanceTest extends AcceptanceTest {
     }
 
     protected List<Customer> searchCustomers(Customer customerExample) {
-        def request = SearchCustomersRequest.builder()
+        def request = SearchCustomersGatewayRequest.builder()
                 .customerExample(customerExample)
                 .pageable(Pageable.builder().build())
                 .build()

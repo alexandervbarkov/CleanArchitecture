@@ -1,11 +1,11 @@
 package com.alexandervbarkov.cleanarchitecture.customerinfrastructure.gateway;
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer;
-import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.search.SearchCustomersRequest;
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Page;
 import com.alexandervbarkov.cleanarchitecture.commoninfrastructure.pagination.Pageables;
 import com.alexandervbarkov.cleanarchitecture.commoninfrastructure.pagination.Pages;
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SearchCustomersGateway;
+import com.alexandervbarkov.cleanarchitecture.customercore.gateway.SearchCustomersGatewayRequest;
 import com.alexandervbarkov.cleanarchitecture.customerinfrastructure.jpa.CustomerEntityMapper;
 import com.alexandervbarkov.cleanarchitecture.customerinfrastructure.jpa.CustomerRepo;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class SearchCustomerJpaGateway implements SearchCustomersGateway {
     private final CustomerEntityMapper mapper;
 
     @Override
-    public Page<Customer> search(SearchCustomersRequest request) {
+    public Page<Customer> search(SearchCustomersGatewayRequest request) {
         var results = repo.findAll(
                 Example.of(mapper.toEntity(request.getCustomerExample())),
                 Pageables.of(request.getPageable())

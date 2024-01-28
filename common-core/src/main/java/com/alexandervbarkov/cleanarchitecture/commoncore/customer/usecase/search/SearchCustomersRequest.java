@@ -1,6 +1,5 @@
 package com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.search;
 
-import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer;
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Pageable;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +13,7 @@ import lombok.extern.jackson.Jacksonized;
 public class SearchCustomersRequest {
     @Valid
     @NotNull
-    Customer customerExample;
+    SearchCustomersRequestExample customerExample;
     @Valid
     @NotNull
     Pageable pageable;

@@ -18,7 +18,7 @@ public class SearchCustomersController {
 
     @GetMapping("/customers")
     public Page<Customer> search(RestCustomer customerExample, Pageable pageable) {
-        // TODO figure out why Customer is not being deserialized, even though the @Jacksonize is present,
+        // TODO figure out why SearchCustomersRequestExample is not being deserialized, even though the @Jacksonize is present,
         // as is in the other models. As a workaround, the RestCustomer was created with a default constructor.
         return searchCustomers.search(buildRequest(customerExample, pageable));
     }
