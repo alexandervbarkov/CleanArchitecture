@@ -11,7 +11,7 @@ import javax.inject.Named;
 
 @Named
 @RequiredArgsConstructor
-public class CustomersFinder implements SearchCustomers {
+class CustomersFinder implements SearchCustomers {
     private final SearchCustomersGateway gateway;
 
     @Override

@@ -1,4 +1,4 @@
-package com.alexandervbarkov.cleanarchitecture.commoncore.validation;
+package com.alexandervbarkov.cleanarchitecture.commoncore.validation.object;
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.exception.BadRequestException;
 import jakarta.validation.ConstraintViolation;
@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 @Named
-public class ValidatorHibernate implements com.alexandervbarkov.cleanarchitecture.commoncore.validation.Validator {
+public class HibernateValidator implements com.alexandervbarkov.cleanarchitecture.commoncore.validation.object.Validator {
     private final Validator validator;
 
-    public ValidatorHibernate() {
+    public HibernateValidator() {
         try (var factory = Validation.byDefaultProvider()
                 .configure()
                 .messageInterpolator(new ParameterMessageInterpolator())

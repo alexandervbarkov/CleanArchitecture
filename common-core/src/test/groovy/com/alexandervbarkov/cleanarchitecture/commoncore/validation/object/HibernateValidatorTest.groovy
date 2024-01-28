@@ -1,4 +1,4 @@
-package com.alexandervbarkov.cleanarchitecture.commoncore.validation
+package com.alexandervbarkov.cleanarchitecture.commoncore.validation.object
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.exception.BadRequestException
 import groovy.transform.EqualsAndHashCode
@@ -7,8 +7,8 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import spock.lang.Specification
 
-class ValidatorHibernateTest extends Specification {
-    def validator = new ValidatorHibernate()
+class HibernateValidatorTest extends Specification {
+    def validator = new HibernateValidator()
 
     def "Validate valid object"() {
         given:

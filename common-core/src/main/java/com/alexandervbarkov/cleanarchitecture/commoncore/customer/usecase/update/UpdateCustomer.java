@@ -4,5 +4,5 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Custome
 
 @FunctionalInterface
 public interface UpdateCustomer {
-    Customer update(Long id, String customerJsonMergePatch);
+    Customer update(UpdateCustomerRequest request);
 }

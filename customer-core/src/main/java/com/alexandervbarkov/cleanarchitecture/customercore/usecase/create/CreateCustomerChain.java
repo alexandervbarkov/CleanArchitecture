@@ -4,7 +4,7 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.chainofresponsibility.C
 import com.alexandervbarkov.cleanarchitecture.commoncore.chainofresponsibility.LastInChain;
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer;
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomerRequest;
-import com.alexandervbarkov.cleanarchitecture.commoncore.validation.Validator;
+import com.alexandervbarkov.cleanarchitecture.commoncore.validation.object.Validator;
 
 import javax.inject.Named;
 
@@ -17,8 +17,8 @@ class CreateCustomerChain {
     }
 
     @Named
-    public static class CustomerValidatorChain extends ConsumerInChain<CreateCustomerRequest, Customer> {
-        CustomerValidatorChain(Validator validator) {
+    public static class CreateCustomerRequestValidatorChain extends ConsumerInChain<CreateCustomerRequest, Customer> {
+        CreateCustomerRequestValidatorChain(Validator validator) {
             super(validator::validate);
         }
     }

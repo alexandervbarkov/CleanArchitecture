@@ -58,7 +58,7 @@ class SearchCustomersAcceptanceTest extends CustomerAcceptanceTest {
         assertResponseBodyEqualsExpected(response, buildExpectedPage(customer))
     }
 
-    def 'Search Customers with invalid fields'() {
+    def 'Search Customers invalid request'() {
         given:
         def expectedError = new ErrorResponse([
                 "customerExample.id must be greater than or equal to 1, but was '0'",

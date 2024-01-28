@@ -5,19 +5,21 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Custome
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.search.SearchCustomers;
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.search.SearchCustomersRequest;
 import com.alexandervbarkov.cleanarchitecture.commoncore.pagination.Page;
+import com.alexandervbarkov.cleanarchitecture.customercore.usecase.search.SearchCustomersChain.CustomersFinderChain;
+import com.alexandervbarkov.cleanarchitecture.customercore.usecase.search.SearchCustomersChain.SearchCustomersRequestValidatorChain;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-public class SearchCustomerFacade extends ChainFacade<SearchCustomersRequest, Page<Customer>> implements SearchCustomers {
+public class SearchCustomersFacade extends ChainFacade<SearchCustomersRequest, Page<Customer>> implements SearchCustomers {
     @Inject
-    public SearchCustomerFacade(
-            SearchCustomerChain.CustomerValidatorChain customerValidatorChain,
-            SearchCustomerChain.CustomersFinderChain customerCreatorChain
+    public SearchCustomersFacade(
+            SearchCustomersRequestValidatorChain searchCustomersRequestValidatorChain,
+            CustomersFinderChain customerCreatorChain
     ) {
         super(
-                customerValidatorChain,
+                searchCustomersRequestValidatorChain,
                 customerCreatorChain
         );
     }

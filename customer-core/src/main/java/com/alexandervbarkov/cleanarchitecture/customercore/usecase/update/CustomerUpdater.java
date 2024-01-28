@@ -2,6 +2,7 @@ package com.alexandervbarkov.cleanarchitecture.customercore.usecase.update;
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer;
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.update.UpdateCustomer;
+import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.update.UpdateCustomerRequest;
 import com.alexandervbarkov.cleanarchitecture.commoncore.exception.ResourceNotFoundException;
 import com.alexandervbarkov.cleanarchitecture.commoncore.mergepatch.MergePatches;
 import com.alexandervbarkov.cleanarchitecture.customercore.gateway.GetCustomerByIdGateway;
@@ -12,16 +13,16 @@ import javax.inject.Named;
 
 @Named
 @RequiredArgsConstructor
-public class CustomerUpdater implements UpdateCustomer {
+class CustomerUpdater implements UpdateCustomer {
     private static final String CANNOT_FIND_CUSTOMER_WITH_ID = "Cannot find Customer with ID: ";
     private final GetCustomerByIdGateway getCustomerById;
     private final SaveCustomerGateway saveCustomerGateway;
     private final MergePatches mergePatches;
 
     @Override
-    public Customer update(Long id, String customerJsonMergePatch) {
-        var currentCustomer = getCurrentCustomer(id);
-        var patchedCustomer = patchCustomer(currentCustomer, customerJsonMergePatch);
+    public Customer update(UpdateCustomerRequest request) {
+        var currentCustomer = getCurrentCustomer(request.getId());
+        var patchedCustomer = patchCustomer(currentCustomer, request.getCustomerJsonMergePatch());
         return saveCustomer(patchedCustomer);
     }
 

@@ -4,8 +4,8 @@ import com.alexandervbarkov.cleanarchitecture.commoncore.chainofresponsibility.C
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.entity.Customer;
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomer;
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomerRequest;
+import com.alexandervbarkov.cleanarchitecture.customercore.usecase.create.CreateCustomerChain.CreateCustomerRequestValidatorChain;
 import com.alexandervbarkov.cleanarchitecture.customercore.usecase.create.CreateCustomerChain.CustomerCreatorChain;
-import com.alexandervbarkov.cleanarchitecture.customercore.usecase.create.CreateCustomerChain.CustomerValidatorChain;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,11 +14,11 @@ import javax.inject.Named;
 public class CreateCustomerFacade extends ChainFacade<CreateCustomerRequest, Customer> implements CreateCustomer {
     @Inject
     public CreateCustomerFacade(
-            CustomerValidatorChain customerValidatorChain,
+            CreateCustomerRequestValidatorChain createCustomerRequestValidatorChain,
             CustomerCreatorChain customerCreatorChain
     ) {
         super(
-                customerValidatorChain,
+                createCustomerRequestValidatorChain,
                 customerCreatorChain
         );
     }
