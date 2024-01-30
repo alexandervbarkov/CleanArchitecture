@@ -1,8 +1,8 @@
 # Clean Architecture
-This project is an implementation of a ReST API using principles from Robert Martin's books <i>Clean Code</i> and <i>Clean Architecture</i>.
+This project is an implementation of a ReST API using principles from Robert Martin's books <i>Clean Code</i> and <i>Clean Architecture</i>. It is a Spring Boot app with an H2 database and Gradle Wrapper as the build tool. To use the app execute ```./gradlew bootrun``` and open http://localhost:8080/swagger-ui.html
  
 ## Modules
-This project defines architectural boundaries to establish five distinct modules. For each new entity we would add two new modules: `<entity>-core` and `<entity>-infrastructure`, such as order-core and order-infrastructure. This approach allows us to easily extract entities into separate independent projects as the application matures or have separate service deployments. And as the application will be approaching the end of its life cycle, it can be easily merged back into one project and deployed as one service. The project is also partitioned into `core` and `infrastructure` modules, where `core` modules do not have any dependencies on frameworks, nor database and web technologies.
+This project defines architectural boundaries to establish five modules. For each new entity we would add two new modules: `<entity>-core` and `<entity>-infrastructure`, such as order-core and order-infrastructure. This approach allows us to easily extract entities into separate independent projects as the application matures or have separate service deployments. And as the application will be approaching the end of its life cycle, it can be easily merged back into one project and deployed as one service. The project is also partitioned into `core` and `infrastructure` modules, where `core` modules do not have any dependencies on frameworks, nor database and web technologies.
 
 ### Hierarchy
 Components only depend on components in higher levels.
@@ -36,3 +36,9 @@ Contains:
 Contains:
 * Configurations for project.
 * The `main` method, since this is a Spring Boot app it is the `@SpringBootApplication` annotation.
+
+## Testing
+There are unit and acceptance tests. The acceptance tests are located in the `configuration` module and test the entire flow, from the API to the database level.
+
+## Patterns
+For adding new behaviors to use cases without violating the Open Close Principle, a combination of the Chain of Responsibility, Facade, and Strategy patterns are used.
