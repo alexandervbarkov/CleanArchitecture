@@ -1,4 +1,4 @@
-package com.alexandervbarkov.cleanarchitecture;
+package com.alexandervbarkov.cleanarchitecture.customerinfrastructure.config;
 
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.create.CreateCustomer;
 import com.alexandervbarkov.cleanarchitecture.commoncore.customer.usecase.search.SearchCustomers;
